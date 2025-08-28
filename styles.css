@@ -98,6 +98,8 @@ body {
     height: calc(100% - 48px);
     overflow-y: auto;
     position: relative;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
 }
 
 .terminal-body::-webkit-scrollbar {
@@ -136,6 +138,9 @@ body {
     align-items: center;
     margin-top: 10px;
     position: relative;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .prompt {
@@ -149,8 +154,9 @@ body {
     background: transparent;
     border: none;
     color: var(--text-color);
-    font-family: inherit;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
+    font-weight: 400;
     outline: none;
     flex: 1;
     caret-color: transparent;
