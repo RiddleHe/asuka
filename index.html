@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Muyuxi's World</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button close"></span>
+                <span class="terminal-button minimize"></span>
+                <span class="terminal-button maximize"></span>
+            </div>
+            <div class="terminal-title">muyuxi@home ~</div>
+        </div>
+        <div class="terminal-body">
+            <div class="terminal-output" id="output">
+                <div class="welcome-message">
+                    <pre class="ascii-art">
+╔═══════════════════════════════════════╗
+║           Welcome, Muyuxi             ║
+║   To your reality distortion field    ║
+╚═══════════════════════════════════════╝
+                    </pre>
+                    <p class="typing-text">Initializing protocol...</p>
+                    <p class="typing-text">Type 'help' to see available commands</p>
+                </div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="prompt">muyuxi@home:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="media-overlay" class="media-overlay hidden">
+        <div class="media-container">
+            <button class="close-media" id="close-media">x Close [ESC]</button>
+
+            <img id="image-viewer" class="media-element hidden" alt="Pig and fish">
+
+            <div id="audio-container" class="media-element hidden">
+                <div class="ascii-music-player">
+                    <pre class="music-ascii">
+♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪
+
+╔══════════════════════════════════════╗
+║            ♫ NOW PLAYING ♫           ║
+║                                      ║
+║      One OK Rock - Clock Strikes🎵    ║ 
+║                                      ║
+║    ████████████████████░░░░░░░░░░    ║
+║                                      ║
+║  ⏮️  ⏯️  ⏭️       🔊 ▓▓▓▓▓▓░░░         ║
+╚══════════════════════════════════════╝
+
+♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪
+                    </pre>
+                    <p class="audio-hint">Press [Enter] to skip · [Space] to pause</p>
+                </div>
+                <audio id="audio-player" controls>
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                </audio>
+            </div>
+
+            <div id="text-reader" class="media-element hidden">
+                <div class="text-content" id="text-content"></div>
+                <p class="text-hint">Press [ESC] to close</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

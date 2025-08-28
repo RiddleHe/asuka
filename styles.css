@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00ff88;
+    --secondary-color: #ff00aa;
+    --bg-color: #0a0e27;
+    --terminal-bg: rgba(10, 14, 39, 0.95);
+    --text-color: #e4e4e4;
+    --prompt-color: #00ff88;
+    --border-color: rgba(0, 255, 136, 0.3);
+    --glow-color: rgba(0, 255, 136, 0.6);
+}
+
+body {
+    font-family: 'Jetbrains Mono', monospace;
+    background: linear-gradient(135deg, #0a0e27 0%, #151933 50%, #0a0e27 100%);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.terminal-container {
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
+    background: var(--terminal-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(0, 255, 136, 0.3),
+        0 0 80px rgba(0, 255, 136, 0.1),
+        inset 0 0 20px rgba(0, 255, 136, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+    position: relative;
+}
+
+.terminal-header {
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), rgba(255, 0, 170, 0.1));
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terminal-button.close {
+    background: #ff5f56;
+    box-shadow: 0 0 10px rgba(255, 95, 86, 0.5);
+}
+
+.terminal-button.minimize {
+    background: #ffbd2e;
+    box-shadow: 0 0 10px rgba(255, 189, 46, 0.5);
+}
+
+.terminal-button.maximize {
+    background: #27c93f;
+    box-shadow: 0 0 10px rgba(39, 201, 63, 0.5);
+}
+
+.terminal-button:hover {
+    transform: scale(1.2);
+}
+
+.terminal-title {
+    flex: 1;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.terminal-body {
+    padding: 20px;
+    height: calc(100% - 48px);
+    overflow-y: auto;
+    position: relative;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.welcome-message {
+    margin-bottom: 30px;
+}
+
+.ascii-art {
+    color: var(--primary-color);
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px var(--glow-color);
+    text-align: center;
+}
+
+.typing-text {
+    margin: 8px 0;
+    opacity: 0;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+.prompt {
+    color: var(--prompt-color);
+    margin-right: 10px;
+    font-weight: 500;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    flex: 1;
+    caret-color: transparent;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: var(--primary-color);
+    margin-left: 2px;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.command-output {
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+.media-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 39, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.media-overlay:not(.hidden) {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.media-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-media {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 101;
+}
+
+.close-media:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+
+.media-element {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
+}
+
+img.media-element {
+    border: 2px solid var(--border-color);
+}
+
+#audio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#audio-visualizer {
+    width: 600px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+#audio-player {
+    width: 400px;
+}
+
+.audio-hint,
+.text-hint {
+    color: var(--primary-color);
+    font-size: 12px;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+#text-reader {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 800px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.text-content {
+    line-height: 1.8;
+    font-size: 16px;
+    color: var(--text-color);
+    white-space: pre-wrap;
+}
+
+.ascii-music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.music-ascii {
+    color: var(--primary-color);
+    font-size: 13px;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 0 15px var(--glow-color);
+}
+
+.error-message {
+    color: #ff7b7b;
+}
+
+.success-message {
+    color: #88dd88;
+}
+
+.help-table {
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.help-table td {
+    padding: 8px 20px;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.help-table td:first-child {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
