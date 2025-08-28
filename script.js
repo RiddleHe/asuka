@@ -46,7 +46,7 @@ const commands = {
     <tr><td>help</td><td>Show this help message</td></tr>
     <tr><td>read</td><td>Read your favoirte book</td></tr>
     <tr><td>listen</td><td>Listen to your favorite song</td></tr>
-    <tr><td>dream</td><td>Dream ~ ~</td></tr>
+    <tr><td>dream</td><td>Dream a little dream with me</td></tr>
     <tr><td>clear</td><td>Clear the terminal</td></tr>
 </table>`;
         }
